@@ -21,7 +21,7 @@ module AWS
 
       private
 
-      def parse_intance_set(ec2_response_hash)
+      def parse_instance_set(ec2_response_hash)
         ec2_response_hash["reservationSet"]["item"]
       end
 
