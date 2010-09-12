@@ -1,18 +1,18 @@
 module AWS
-	module EC2
+  module EC2
     # TODO change to instance once upstream namespace resolved  
-		class Instancex
-			
-			attr_accessor :instance_id, :launch_time, :status
+    class Instancex
 
-			def initialize(init_hash = {})
-				init_hash.each do |k, v|
-					self.send(k.to_s + "=", v.to_s) unless !self.respond_to?(k.to_s + "=")
-				end
-			end
+      attr_accessor :instance_id, :launch_time, :status
 
-		end
+      def initialize(init_hash = {})
+        init_hash.each do |k, v|
+          self.send(k.to_s + "=", v) unless !self.respond_to?(k.to_s + "=")
+        end
+      end
 
-	end
+    end
+
+  end
 end
 
