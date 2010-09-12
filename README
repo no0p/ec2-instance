@@ -4,12 +4,21 @@ This is a small set of extensions for common uses of the amazon-ec2 gem.
 
 It is intended to be used in processes which are running on actual ec2 instances.  It uses the Instance module and other functions in EC2::Base to extract useful information from the hashes returned and to provide useful actions.
 
+It also includes the Instance class which is more convenient to work with than an elaborate hash, though perhaps not universally more convenient.
+
 == Example
 
 With an instance of EC2::Base:
 
 @ec2.launch_time
 => Returns a Time object with a value representing the time amazon says this instance launched.
+
+@ec2.active_instances
+=> [#<AWS::EC2::Instancex:0x7fe49d65eeb8 @launch_time="2010-08-23T19:50:35.000Z", @instance_id="i-354b215f", @status="running">, #<AWS::EC2::Instancex:0x7fe49d65ebe8 @launch_time="2010-09-12T07:42:14.000Z", @instance_id="i-3fb69355", @status="running">]
+
+== Source
+
+Available at http://github.com/bdigital/ec2-instance
 
 == License
 
