@@ -1,7 +1,7 @@
 spec = Gem::Specification.new do |s|
   s.name = 'ec2-instance'
-  s.version = '0.0.4'
-  s.date = '2010-10-11'
+  s.version = '0.0.5'
+  s.date = '2010-10-12'
   s.summary = 'Extension for amazon-ec2 gem for instance operations'
   s.email = "berrydigital@gmail.com"
   s.homepage = "http://github.com/bdigital/ec2-instance"
@@ -10,6 +10,6 @@ spec = Gem::Specification.new do |s|
   s.executables = []
   s.authors = ["Robert Berry"]
   s.add_dependency('amazon-ec2')
-  s.files = ["lib/ec2-instance.rb", "README"]
+  s.files = ["lib/ec2-instance.rb", "lib/instance.rb", "README"]
 end
 
