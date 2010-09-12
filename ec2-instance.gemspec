@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s|
   s.name = 'ec2-instance'
-  s.version = '0.0.5'
+  s.version = '0.0.6'
   s.date = '2010-10-12'
   s.summary = 'Extension for amazon-ec2 gem for instance operations'
   s.email = "berrydigital@gmail.com"
