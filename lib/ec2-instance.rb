@@ -8,6 +8,23 @@ module AWS
     class Base
 
       #
+      # Returns an array of instance ids which have a running or pending status
+      #
+			def active_instance_id_list
+ 				instances = []
+
+				parse_instance_set(self.describe_instances).each do |instance|
+      		status = instance["instancesSet"]["item"].first["instanceState"]["name"]
+     		
+ 					if status == "running" || status == "pending"
+        		instances.push instance["instancesSet"]["item"].first["instanceId"]
+        	end
+        end 
+        
+				return instances
+      end
+
+      #
       # Return the launch time of this machine.
       #
       def launch_time
