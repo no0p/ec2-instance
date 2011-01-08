@@ -1,9 +1,8 @@
 module AWS
   module EC2
-    # TODO change to instance once upstream namespace resolved  
-    class Instancex
+    class Instance
 
-      attr_accessor :instance_id, :launch_time, :status
+      attr_accessor :instance_id, :launch_time, :status, :tags
 
       def initialize(init_hash = {})
         init_hash.each do |k, v|
@@ -11,8 +10,11 @@ module AWS
         end
       end
 
-    end
+      def match?(tag)
+        self.tags.detect { |k, v| v.to_s.match /#{tag}/ }
+      end  
 
+    end
   end
 end
 

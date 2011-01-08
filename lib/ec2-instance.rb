@@ -24,6 +24,17 @@ module AWS
       end
 
       #
+      # Return a list of active instances which have a tag value which regexp matches.
+      #
+      def instances_active_with_tag(tag)
+        matches = []
+        active_instances.each do |ai|
+          matches.push ai unless !ai.match?(tag)
+        end
+        return matches
+      end
+
+      #
       # Return the launch time of this machine.
       #
       def launch_time
@@ -40,7 +51,7 @@ module AWS
         instances = []
         ec2_response_hash["reservationSet"]["item"].each do |res|
           res["instancesSet"]["item"].each do |i|
-            instances.push AWS::EC2::Instancex.new({:instance_id => parse_instance_id(i), :status => parse_status(i), :launch_time => parse_launch_time(i)})
+            instances.push AWS::EC2::Instance.new({:instance_id => parse_instance_id(i), :status => parse_status(i), :launch_time => parse_launch_time(i), :tags => parse_tags(i)})
           end
         end
         return instances
@@ -56,6 +67,11 @@ module AWS
 
       def parse_status(instance_hash)
         instance_hash["instanceState"]["name"]
+      end
+  
+      def parse_tags(instance_hash)
+        return [] unless !instance_hash["tagSet"].nil?
+        instance_hash["tagSet"]["item"]
       end
 
     end
