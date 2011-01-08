@@ -2,7 +2,7 @@ module AWS
   module EC2
     class Instance
 
-      attr_accessor :instance_id, :launch_time, :status, :tags
+      attr_accessor :instance_id, :launch_time, :status, :tags, :dns
 
       def initialize(init_hash = {})
         init_hash.each do |k, v|

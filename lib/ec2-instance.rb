@@ -51,7 +51,7 @@ module AWS
         instances = []
         ec2_response_hash["reservationSet"]["item"].each do |res|
           res["instancesSet"]["item"].each do |i|
-            instances.push AWS::EC2::Instance.new({:instance_id => parse_instance_id(i), :status => parse_status(i), :launch_time => parse_launch_time(i), :tags => parse_tags(i)})
+            instances.push AWS::EC2::Instance.new({:instance_id => parse_instance_id(i), :status => parse_status(i), :launch_time => parse_launch_time(i), :tags => parse_tags(i), :dns => parse_dns(i)})
           end
         end
         return instances
@@ -72,6 +72,10 @@ module AWS
       def parse_tags(instance_hash)
         return [] unless !instance_hash["tagSet"].nil?
         instance_hash["tagSet"]["item"]
+      end
+
+      def parse_dns(instance_hash)
+        instance_hash["dnsName"]
       end
 
     end
