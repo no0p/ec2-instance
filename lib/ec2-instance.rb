@@ -26,7 +26,7 @@ module AWS
       #
       # Return a list of active instances which have a tag value which regexp matches.
       #
-      def instances_active_with_tag(tag)
+      def active_instances_with_tag(tag)
         matches = []
         active_instances.each do |ai|
           matches.push ai unless !ai.match?(tag)

@@ -11,7 +11,7 @@ module AWS
       end
 
       def match?(tag)
-        self.tags.detect { |k, v| v.to_s.match /#{tag}/ }
+        self.tags.detect {|h| h.detect { |k, v| v.to_s.match /#{tag}/ } }
       end  
 
     end
