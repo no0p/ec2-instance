@@ -35,14 +35,21 @@ module AWS
       end
 
       #
-      # Return the launch time of this machine.
+      # Return an instance object for this machine.
       #
-      def launch_time
+      def identity_instance
         local_instance = parse_instance_set(self.describe_instances).detect do |inst|
           inst.instance_id.eql? AWS::EC2::Instance.local_instance_id
         end
+        return local_instance
+      end
 
-        return local_instance.launch_time
+      #
+      # Deprecated.  Will be removed in the next couple versions.
+      #   Please use identity_instance.launch_time
+      #
+      def launch_time
+        identity_instance.launch_time
       end
 
       private
